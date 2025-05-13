@@ -125,6 +125,19 @@ async def translate_text(src: str, tgt: str, text: str):
         translated = translator.translate(text, src=src, dest=tgt).text
         print(f"🌐 Translated text: {translated}")
         return {"translated_text": translated}
+         # Generate TTS for translated text using gTTS
+        tts = gTTS(text=translated, lang=tgt)
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_audio:
+            tmp_audio_name = tmp_audio.name
+            tts.save(tmp_audio_name)
+            tmp_audio.close()
+
+            # Return audio as response
+            with open(tmp_audio_name, "rb") as audio_file:
+                audio_data = audio_file.read()
+                os.remove(tmp_audio_name)
+                return {"translated_text": translated, "audio_data": audio_data}
+
     except Exception as e:
         return {"error": str(e)}
 
