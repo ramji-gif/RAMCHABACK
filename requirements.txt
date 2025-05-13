@@ -1,9 +1,11 @@
 fastapi==0.110.1
-uvicorn[standard]==0.29.0
-googletrans==4.0.0-rc1
+uvicorn==0.29.0
+googletrans==4.0.0rc1
+speechrecognition==3.10.0
 gTTS==2.5.1
-SpeechRecognition==3.10.1
 pydub==0.25.1
-aiofiles==23.2.1  # Required for FastAPI file handling
-python-multipart==0.0.9  # Optional: if you handle form data
-ffmpeg-python==0.2.0  # Helps if you need ffmpeg access in code
+aiofiles==23.2.1
+python-multipart==0.0.9
+pydantic==2.7.1
+starlette==0.37.2
+
